@@ -13,7 +13,7 @@ block_image_width = 5;
 block_image_height = 5;
 
 function load_img(){
-	fabric.Image.fromURL("gold-h.png",function(Img){ 
+	fabric.Image.fromURL("golf-h.png",function(Img){ 
 		hole_obj = Img;
 		hole_obj.scaleToWidth(50);
 		hole_obj.scaleToHeight(50);
@@ -30,12 +30,12 @@ function load_img(){
 function new_image()
 {
 	fabric.Image.fromURL("ball.png", function(img){
-	ball_obj = Img;
+	ball_obj = img;
 	ball_obj.scaleToWidth(50);
 	ball_obj.scaleToHeight(50);
 	ball_obj.set({
 	top:ball_y,
-	leftball_x
+	left:ball_x
 	});
 	canvas.add(ball_obj);
 	});
@@ -49,6 +49,7 @@ function my_keydown(e)
 	console.log(keyPressed);
 	if((ball_x==hole_x)&&(ball_y==hole_y)){
 		canvas.remove(ball_obj);
+		console.log("You Have hit the goal")
 		document.getElementById("hd3").innerHTML="GOAL!";
 		document.getElementById("myCanvas").style.bordercolor="red";
 	}
@@ -78,11 +79,11 @@ function my_keydown(e)
 	
 	function up()
 	{
-		if(ball_y <=450)
+		if(ball_y >=5)
 		{
-			ball_y = ball_y + block_image_height;
+			ball_y = ball_y - block_image_height;
 			console.log("Img height =" + block_image_height);
-			console.log("Down Arrow x =" + ball_x + "y=" + ball_y);
+			console.log("Down Arrow x =" + ball_x - "y=" + ball_y);
 			canvas.remove(ball_obj);
 			new_image();
 		}
@@ -104,7 +105,7 @@ function my_keydown(e)
 	{
 		if(ball_x >5)
 		{
-			ball_y = ball_y + block_image_height;
+			ball_x = ball_x - block_image_width;
 			console.log("Img height =" + block_image_height);
 			console.log("Down Arrow x =" + ball_x + "y=" + ball_y);
 			canvas.remove(ball_obj);
@@ -117,7 +118,7 @@ function my_keydown(e)
 	{
 		if(ball_x <=1050)
 		{
-			ball_y = ball_y + block_image_height;
+			ball_x = ball_x + block_image_width;
 			console.log("Img height =" + block_image_height);
 			console.log("Down Arrow x =" + ball_x + "y=" + ball_y);
 			canvas.remove(ball_obj);
